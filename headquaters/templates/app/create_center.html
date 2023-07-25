@@ -1,0 +1,25 @@
+{% extends 'main_app.html' %}
+{% load static %}
+{% block main_app %}
+    <div class="container p-3">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{message.tags}} text-center">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+        <form method="post" class="mb-5">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="name_center" name="name_center" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="addresse" class="form-label">Adresse complète</label>
+                    <input type="text" class="form-control" id="name_center" name="address_center" required>
+                </div>
+            </div>
+            <button class="btn btn-primary w-100">Enregistrer</button>
+        </form>
+    </div>
+{% endblock main_app %}

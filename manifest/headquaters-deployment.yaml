@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\ELIE\AppData\Local\Microsoft\WinGet\Links\kompose.exe convert -f .\docker-compose.yaml --out .
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: headquaters
+  name: headquaters
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: headquaters
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\ELIE\AppData\Local\Microsoft\WinGet\Links\kompose.exe convert -f .\docker-compose.yaml --out .
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/manifest-default: "true"
+        io.kompose.service: headquaters
+    spec:
+      containers:
+        - env:
+            - name: ELASTICSEARCH_HOST
+              value: elasticsearch
+            - name: ELASTICSEARCH_PORT
+              value: "9200"
+            - name: rabbitmq_HOST
+              value: rabbitmq
+            - name: rabbitmq_PASSWORD
+              value: guest
+            - name: rabbitmq_PORT
+              value: "5672"
+            - name: rabbitmq_USERNAME
+              value: guest
+          image: elkis/headquaters:v1
+          name: headquaters
+          ports:
+            - containerPort: 3000
+          resources: {}
+          volumeMounts:
+            - mountPath: /django/data
+              name: headquaters-data
+      restartPolicy: Always
+      volumes:
+        - name: headquaters-data
+          persistentVolumeClaim:
+            claimName: headquaters-data
+status: {}

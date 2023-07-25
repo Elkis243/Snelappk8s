@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #444;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        .title {
+            font-size: 17px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .invoice-info, .client-info {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+            border: 1px solid #ccc;
+            font-size:12px;
+        }
+
+        th {
+            text-align: left;
+            background-color: #f9f9f9;
+            font-weight: 500;
+        }
+
+        td {
+            vertical-align: top;
+        }
+
+        /* Styles pour la date */
+        .date {
+            text-align: right;
+            margin-top: 20px;
+            font-size:12.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">FACTURE D'ELECTRICITE BASE TENSION</h1>
+        <div class="client-info">
+            <h1>INFORMATIONS DU CLIENT</h1>
+            <table>
+                <tr>
+                    <th>Noms</th>
+                    <td> {{invoice.subscriber.name}} {{invoice.subscriber.last_name}} {{invoice.subscriber.first_name}} </td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{invoice.subscriber.address}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="invoice-info">
+             <h1>INFORMATIONS DE LA FACTURE</h1>
+            <table>
+                <tr>
+                    <th>Numero de la facture</th>
+                    <td>{{invoice.invoice_code}}</td>
+                </tr>
+            </table>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Consommation</th>
+                    <th>Montant</th>
+                    <th>Période</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{invoice.index_invoice}}</td>
+                    <td>{{invoice.consommation}} kWh</td>
+                    <td>{{invoice.amount}} Fc</td>
+                    <td>{{invoice.month}} </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="date">
+            <p>Date de la facture : {{invoice.date_invoice}}</p>
+        </div>
+    </div>
+</body>
+
+</html>

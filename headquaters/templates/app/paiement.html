@@ -1,0 +1,32 @@
+{% extends 'main_app.html' %}
+{% load static %}
+{% block main_app %}
+       <form method="get" class="p-3">
+            <div class="d-flex justify-content-between">
+            <input type="search" name="q" class="form-control me-2" id="search">
+                 <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </form>
+        <div class="container mb-4">
+            <span class='float-end badge bg-primary mx-3'>Factures payées : {{amount_paid}} CDF</span>
+            <span class='float-end badge bg-danger'>Factures impayées : {{unpiad_amount}} </span>
+        </div>
+         <div class="container">
+            {% for item in invoices %}
+                <p class="cvs p-2">
+                    {{item.subscriber.name}} {{item.subscriber.last_name}} {{item.subscriber.first_name}} - {{item.subscriber.address}}
+                    {% if item.status == 'Impayée'  %}
+                        <span class="badge bg-danger" data-toggle="tooltip" data-placement="top" title="Payer la facture">{{item.status}}</span>
+                    {% else %}
+                            <span class="badge bg-primary">{{item.status}}</span>
+                    {% endif %}
+                    <a href="{% url 'generate_pdf' item.id %}">
+                        <span class="badge bg-primary float-end mt-1">Voir</span>
+                    </a>
+                </p>
+                {% empty %}
+                    <p class="text-center text-gray mt-4"><i class="bi bi-view-list"></i> Liste vide pour le moment !</p>
+            {% endfor %}
+        </div>     
+    </div>
+{% endblock main_app %}

@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  headquaters:
+    image: elkis/headquaters:v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+      - elasticsearch
+    environment:
+      - rabbitmq_HOST=rabbitmq
+      - rabbitmq_PORT=5672
+      - rabbitmq_USERNAME=guest
+      - rabbitmq_PASSWORD=guest
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+    volumes:
+      - headquaters_data:/django/data
+
+  center:
+    image: elkis/center:v1
+    ports:
+      - "4000:4000"
+    depends_on:
+      - rabbitmq
+    environment:
+      - rabbitmq_HOST=rabbitmq
+      - rabbitmq_PORT=5672
+      - rabbitmq_USERNAME=guest
+      - rabbitmq_PASSWORD=guest
+    volumes:
+      - center_data:/django/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+volumes:
+  headquaters_data:
+  center_data:
+  rabbitmq_data:
+  elasticsearch_data:

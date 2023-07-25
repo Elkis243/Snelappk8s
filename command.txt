@@ -1,0 +1,32 @@
+La liste des commandes importantes de Git :
+
+$ git init : Initialiser un dépôt git
+$ git config --global user.email email : Configuration email dans git
+$ git config --global user.name name: Configuration nom git
+$ git config --global --list : Afficher les informations globales de la configuration
+$ git status : Connaitre l'état d'un dépôt
+$ git add file : staging le fichier file
+$ git add . : staging tous les fichiers
+$ git commit -m "Message du commit" : Enregistrer les changement dans un dépôt git local
+$ git commit -a -m : La combinaison de git add et git commit
+$ git log --oneline : Afficher la liste des commits sur une seule ligne
+$ git diff : Voir la différence entre le fichier commit et non commit
+$ git checkout commit : Retourner dans un commit sans modifier
+$ git checkout commit file: Revenir en arrière
+$ git branch nom : Création d'une nouvelle branche
+$ git branch -d nom : Supprimer une branche
+$ git reset HEAD nom_fichier : Supprimer nom_fichier dans staging
+$ git reset --hard id_commit : Supprimera tous les commits précédents et  les modifications
+$ git reset --soft id_commit : Supprimera tous les commits précédents et laisse les modifications dans le staging
+$ git reset --mixed id_commit : Supprimera tous les commits précédents et laisse les modifications simplement
+$ git revert id_commit : Annuler un commit
+$ git merge branch : Fusionner deux branches
+$ git commit --amend : Modifier la commit précédente 
+$ git stash save message: Sauvegarder les modifications
+$ git stash apply : Appliquer les modifications stockées
+$ git stash drop : Supprimer les modifications
+$ git stash show stash@{indice} : Voir une modification 
+$ git stash pop stash@{indice} : Appliquer et supprimer un stash
+$ git remote add origin lien : Connexion à un dépôt distant
+$ git push origin master : Pouser le dossier dans un depot distant
+$ git pull origin master : Recuperer les modifications

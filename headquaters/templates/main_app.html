@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block main %}
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 fs-6 px-3" href=""> <img src="{% static 'image/favicon-32x32.png' %}" class="img-fluid"> Snel app</a>
+        <div class="dropdown account">
+            <button class="btn dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mon compte
+            </button>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item">Agent : {{request.user.username}}</li>
+                <li> <a href="{% url 'disconnect' %}" class="nav-link dropdown-item"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></li>
+            </ul>
+        </div>
+        <button class="navbar-toggler position-absolute d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="{% url 'create_center' %}" class="nav-link {% if title == 'Centre' %}active{% endif %}"><i class="bi bi-house"></i> Centre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'read_center' %}" class="nav-link {% if title == 'Liste centres' %}active{% endif %}"><i class="bi bi-list"></i> Liste centres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'create_agent' %}" class="nav-link {% if title == 'Agent' %}active{% endif %}"><i class="bi bi-person"></i> Agent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'read_agent' %}" class="nav-link {% if title == 'Liste agents' %}active{% endif %}"><i class="bi bi-list"></i> Liste agents</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'read_subscribers' %}" class="nav-link {% if title == 'Liste abonnés' %}active{% endif %}"><i class="bi bi-list"></i> Liste abonnés</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'create_invoice' %}" class="nav-link {% if title == 'Facture' %}active{% endif %}"><i class="bi bi-receipt"></i> Facturation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'paiement' %}" class="nav-link {% if title == 'Paiement' %}active{% endif %}"><i class="bi bi-wallet2"></i> Paiement</a>
+                        </li>
+                    </ul>   
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                
+                {% block main_app %}
+                    
+                {% endblock main_app %}
+                    
+            </main>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+{% endblock main %}
+    

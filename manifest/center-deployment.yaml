@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\ELIE\AppData\Local\Microsoft\WinGet\Links\kompose.exe convert -f .\docker-compose.yaml --out .
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: center
+  name: center
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: center
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\ELIE\AppData\Local\Microsoft\WinGet\Links\kompose.exe convert -f .\docker-compose.yaml --out .
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/manifest-default: "true"
+        io.kompose.service: center
+    spec:
+      containers:
+        - env:
+            - name: rabbitmq_HOST
+              value: rabbitmq
+            - name: rabbitmq_PASSWORD
+              value: guest
+            - name: rabbitmq_PORT
+              value: "5672"
+            - name: rabbitmq_USERNAME
+              value: guest
+          image: elkis/center:v1
+          name: center
+          ports:
+            - containerPort: 4000
+          resources: {}
+          volumeMounts:
+            - mountPath: /django/data
+              name: center-data
+      restartPolicy: Always
+      volumes:
+        - name: center-data
+          persistentVolumeClaim:
+            claimName: center-data
+status: {}

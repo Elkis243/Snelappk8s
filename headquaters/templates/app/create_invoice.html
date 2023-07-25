@@ -1,0 +1,52 @@
+{% extends 'main_app.html' %}
+{% load static %}
+{% block main_app %}
+    <div class="container p-3">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{message.tags}} text-center">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+        <form action="" method="post" class="mb-5">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="" class="form-label">Abonné</label>
+                    <select class="form-select" name="subscriber" required>
+                        {% for item in souscrebers %}
+                            <option value="{{item.id}}">{{item.name | capfirst}} {{item.last_name}} {{item.first_name}}, {{item.address}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Periode facturée</label>
+                    <select class="form-select" name="month">
+                        <option value="Janvier">Janvier</option>
+                        <option value="Février">Février</option>
+                        <option value="Mars">Mars</option>
+                        <option value="Avril">Avril</option>
+                        <option value="Mai">Mai</option>
+                        <option value="Juin">Juin</option>
+                        <option value="Juillet">Juillet</option>
+                        <option value="Août">Août</option>
+                        <option value="Septembre">Septembre</option>
+                        <option value="Octobre">Octobre</option>
+                        <option value="Novembre">Novembre</option>
+                        <option value="Décembre">Décembre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="" class="form-label">Index</label>
+                    <input type="number" class="form-control" min="1" name="index_invoice">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Consommation</label>
+                    <input type="number" class="form-control" min="1" name="consommation">
+                </div>
+            </div>
+            <button class="btn btn-primary w-100">Enregistrer</button>
+        </form>
+    </div>
+{% endblock main_app %}

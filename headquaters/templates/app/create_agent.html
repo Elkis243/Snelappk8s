@@ -1,0 +1,45 @@
+{% extends 'main_app.html' %}
+{% load static %}
+{% block main_app %}
+    <div class="container p-3">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{message.tags}} text-center">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+        <form action="" method="post" class="mb-5">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Nom</label>
+                    <input type="text" class="form-control" name="name" id="name" required>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="last_name" class="form-label">Postnom</label>
+                    <input type="text" class="form-control" name="last_name", id="last_name" required>
+                </div>
+            </div>
+             <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">Prenom</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name" required>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="email" class="form-label">Adresse email</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="cvs" class="form-label">Centre</label>
+                    <select class="form-select" name="name_center" required>
+                        {% for item  in centers %}
+                            <option value="{{item.id}}">{{item.name_center}}, {{item.address_center}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary w-100">Enregistrer</button>
+        </form>
+    </div>
+{% endblock main_app %}

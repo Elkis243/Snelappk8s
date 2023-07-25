@@ -1,0 +1,71 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13.5px;
+}
+.navbar {
+    background-color: #386FA4 !important;
+}
+
+.navbar-brand {
+    padding-top: .70rem;
+    padding-bottom: .70rem;
+    font-size: 14px !important;
+    letter-spacing: 0.3px;
+    font-weight: 550;
+}
+
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 0.3rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    background-color: rgb(243, 243, 243) !important;
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+    margin-left: 6px;
+    font-size: 13px;
+}
+
+.active {
+   border-left: 3px solid #1e588e;
+}
+.account{
+    position: relative;
+    margin-right: 60px;
+    background-color: inherit;
+}
+.dropdown-item{
+    font-size: 12px;
+}
+.alert{
+    height: 30px;
+    line-height: 2px;
+}
+.list{
+    font-size: 13px;
+}
+.cvs{
+    background-color: rgb(253, 253, 253);
+    border-radius: 6px;
+    font-size: 12px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}

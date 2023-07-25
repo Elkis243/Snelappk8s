@@ -1,0 +1,20 @@
+{% extends 'main_app.html' %}
+{% load static %}
+{% block main_app %}
+       <form method="get" class="p-3">
+            <div class="d-flex justify-content-between">
+            <input type="search" name="q" class="form-control me-2" id="search">
+                 <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </form>
+        <div class="container mb-4">
+            <span class='float-end badge bg-primary'>Abonné : {{count}}</span>
+        </div>
+        <div class="container">
+            {% for item in subscribers %}
+                <p class="cvs p-2">{{item.name}} {{item.last_name}} {{item.first_name}}, {{item.address}}<span class="float-end badge bg-primary">{{item.type_subscriber}}</span> </p>
+                {% empty %}
+                    <p class="text-center text-gray mt-4"><i class="bi bi-view-list"></i> Liste vide pour le moment !</p>
+            {% endfor %}
+        </div>  
+{% endblock main_app %}
