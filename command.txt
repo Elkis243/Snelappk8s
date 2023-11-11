@@ -30,3 +30,4 @@ $ git stash pop stash@{indice} : Appliquer et supprimer un stash
 $ git remote add origin lien : Connexion à un dépôt distant
 $ git push origin master : Pouser le dossier dans un depot distant
 $ git pull origin master : Recuperer les modifications
+git push origin name_branch : Publier une branche local en ligne 
